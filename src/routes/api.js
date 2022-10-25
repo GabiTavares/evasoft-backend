@@ -36,10 +36,6 @@ function SqlQuery (sqlQry, res) {
   });
 }
 
-router.get('/listaId', (req,res) => {
-  const list = SqlQuery('SELECT DISTINCT ID FROM ForkliftList', res)
-})
-
 router.get("/marca", (req, res) => {
   const teste = SqlQuery("SELECT DISTINCT MARCA FROM ForkliftList", res);
 });
@@ -54,7 +50,6 @@ router.get('/motor', (req, res) => {
   const teste = SqlQuery('SELECT DISTINCT MOTOR FROM ForkliftList', res)
 })
 router.get('/falha', (req, res) => {
-  //const falhas = SqlQuery('SELECT DISTINCT DecisionRoot.RootCause FROM DecisionRoot INNER JOIN RootCause ON DecisionRoot.RootCause = RootCause.ID', res)
   const falhas2 = SqlQuery('SELECT DISTINCT RootCause.ROOTCAUSE, Symptoms.Symptoms from RootCause INNER JOIN DecisionRoot ON DecisionRoot.RootCause = RootCause.ID INNER JOIN Symptoms ON DecisionRoot.Symptons = Symptoms.Id', res)
 })
 
@@ -68,6 +63,10 @@ router.get('/decision', (req, res) => {
 
 router.get('/equipamentos', (req, res) => {
   const equip = SqlQuery('SELECT DISTINCT ID, MARCA, MODELO, ANO, MOTOR FROM ForkliftList', res)
+})
+
+router.get('/decision2', (req, res) => {
+  const decision = SqlQuery('SELECT DISTINCT a.id, c.Symptoms , d.SpareParts , e.ROOTCAUSE FROM DBTCC.ForkliftList a INNER JOIN DBTCC.DecisionRoot b on b.ForkliftId  = a.ID INNER JOIN DBTCC.Symptoms c on c.Id = b.Symptons INNER JOIN DBTCC.SpareParts d on d.Id = b.SparePartSt INNER JOIN DBTCC.RootCause e on e.Id = b.RootCause', res)
 })
 
 router.post('/cadastro', (req, res) => {
