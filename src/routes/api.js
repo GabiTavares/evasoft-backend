@@ -49,20 +49,13 @@ router.get('/ano', (req, res) => {
 router.get('/motor', (req, res) => {
   const teste = SqlQuery('SELECT DISTINCT MOTOR FROM ForkliftList', res)
 })
-router.get('/falha', (req, res) => {
-  const falhas2 = SqlQuery('SELECT DISTINCT RootCause.ROOTCAUSE, Symptoms.Symptoms from RootCause INNER JOIN DecisionRoot ON DecisionRoot.RootCause = RootCause.ID INNER JOIN Symptoms ON DecisionRoot.Symptons = Symptoms.Id', res)
-})
 
 router.get('/catalogo', (req, res) => {
   const catalogo = SqlQuery('SELECT DISTINCT MARCA, CODIGO, COMPONENTE, SISTEMA FROM Catalog', res)
 })
 
-router.get('/decision', (req, res) => {
-  const testando = SqlQuery('SELECT DecisionRoot.ForkliftId, RootCause.ROOTCAUSE FROM DecisionRoot INNER JOIN RootCause ON RootCause.ID = DecisionRoot.RootCause', res)
-})
-
 router.get('/equipamentos', (req, res) => {
-  const equip = SqlQuery('SELECT DISTINCT ID, MARCA, MODELO, ANO, MOTOR FROM ForkliftList', res)
+  const equip = SqlQuery('SELECT DISTINCT ID, MARCA, MODELO, ANO ,SERIE, MOTOR FROM ForkliftList', res)
 })
 
 router.get('/decision2', (req, res) => {
