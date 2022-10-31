@@ -51,7 +51,7 @@ router.get('/motor', (req, res) => {
 })
 
 router.get('/catalogo', (req, res) => {
-  const catalogo = SqlQuery('SELECT DISTINCT MARCA, CODIGO, COMPONENTE, SISTEMA FROM Catalog', res)
+  const catalogo = SqlQuery('SELECT DISTINCT MARCA, MODELO, ANO, SERIE, MOTOR, CODIGO, COMPONENTE, SISTEMA FROM Catalog', res)
 })
 
 router.get('/equipamentos', (req, res) => {
