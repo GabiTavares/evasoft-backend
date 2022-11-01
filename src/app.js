@@ -16,22 +16,11 @@ var corsOptions = {
  app.use(cors(corsOptions));
 
  app.use(bodyParser.json());
- app.use('/api',routes);
-app.get('/users', (req, res) => {
-  res.json({"users": ["userOne Roger", "userTwo", "userThree"]});
-})
-
-app.get('/cors', (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.send({ "msg": "This has CORS enabled 🎈" })
-    })
+ app.use('/',routes);
 
 
-
-    const PORT = process.env.PORT || 5000;
-
-    app.listen(PORT, () => {
-        console.log(`rodando na porta: ${PORT}`);
+    app.listen(process.env.PORT || 5000, () => {
+        console.log("rodando", this.adress().port);
     });
 
 
