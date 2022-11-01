@@ -17,11 +17,9 @@ var corsOptions = {
 
  app.use(bodyParser.json());
  app.use('/api',routes);
-app.get('/', (req, res) => {
+app.get('/users', (req, res) => {
   res.json({"users": ["userOne Roger", "userTwo", "userThree"]});
 })
-
-
 
 app.get('/cors', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
@@ -29,10 +27,7 @@ app.get('/cors', (req, res) => {
     })
 
 
-const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`rodando na porta: ${PORT}`);
-});
+app.listen(process.env.PORT || 5000);
 
 
